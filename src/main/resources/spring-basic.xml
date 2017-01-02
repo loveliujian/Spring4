@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName">
+
+	<!-- dao 层 -->
+	<bean id="baseDaoImpl" class="com.liu.spring.dao.impl.BaseDaoImpl"></bean>
+	
+	<!-- service 业务层 -->
+	<bean id="baseServiceImpl" class="com.liu.spring.service.impl.BaseServiceImpl" scope="prototype">
+		<property name="baseDao" ref="baseDaoImpl" />
+	</bean>
+	
+	<!-- 属性 -->
+	<bean id="constructorClient" class="com.liu.spring.constructor.ConstructorClient">
+		<constructor-arg index="0" value="20"></constructor-arg>
+		<constructor-arg index="1" value="andy"></constructor-arg>
+		<constructor-arg index="2" value="true"></constructor-arg>
+	</bean>
+	
+	<!-- bean的生命周期 -->
+	<bean id="beanLifeCycle" class="com.liu.spring.lifecycle.BeanLifeCycle" init-method="start" destroy-method="stop"></bean>
+	
+	<bean id="moocApplicationContext" class="com.liu.spring.aware.MoocApplicationContext"></bean>
+	
+	<bean id="moocBeanName" class="com.liu.spring.aware.MoocBeanName"></bean>
+	
+	<bean id="autoWiringDao" class="com.liu.spring.autowiring.AutoWiringDao"></bean>
+	
+	<bean id="autoWiringService" class="com.liu.spring.autowiring.AutoWiringService"></bean>
+	
+	
+</beans>
